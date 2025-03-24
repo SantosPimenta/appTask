@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NumberValueAccessor } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { addIcons } from 'ionicons';
+import { ellipseOutline, checkmarkCircle } from 'ionicons/icons';
 
 interface Task{
   id:number;
@@ -19,6 +21,7 @@ interface Task{
 export class HomePage {
     tasks: Task[] = [];
     newTask: string = "";
+    exibirConcluidos: boolean = true;
 
     addTask(){
       if (this.newTask.trim()) {
@@ -36,5 +39,21 @@ export class HomePage {
       
       }
     }
-  constructor() {}
+    concluir(taskId: number){
+        const task = this.tasks.find((task)=> task.id === taskId)
+        if (task) {
+          task.completed = !task.completed
+        }
+    }
+
+    mostrarOcultar(){
+      this.exibirConcluidos = !this.exibirConcluidos;
+    }
+
+    get filteredTasks(){
+      return this.tasks.filter((task)=> this.exibirConcluidos || !task.completed)
+    }
+  constructor() {
+    addIcons({checkmarkCircle, ellipseOutline})
+  }
 }

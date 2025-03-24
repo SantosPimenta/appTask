@@ -17,10 +17,14 @@
       <ion-button (click)="addTask()" >Adicionar</ion-button>
     </ion-item>
     <ion-list>
-      <ion-item *ngFor="let tarefa of tasks">
-        <ion-label>
+      <ion-item *ngFor="let tarefa of filteredTasks">
+        <ion-label [ngClass]="{'completado-task':tarefa.completed}">
           {{tarefa.title}}
         </ion-label>
+          <ion-button fill="clear" (click)="concluir(tarefa.id)" ><ion-icon [name]="tarefa.completed ? 'checkmark-circle':'ellipse-outline' "></ion-icon></ion-button>
       </ion-item>
+      <ion-list>
+        <ion-button expanded="full" (click)="mostrarOcultar()">Mostrar/Ocultar</ion-button>
+      </ion-list>
     </ion-list>
 </ion-content>
