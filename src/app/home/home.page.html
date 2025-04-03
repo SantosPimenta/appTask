@@ -22,9 +22,10 @@
           {{tarefa.title}}
         </ion-label>
           <ion-button fill="clear" (click)="concluir(tarefa.id)" ><ion-icon [name]="tarefa.completed ? 'checkmark-circle':'ellipse-outline' "></ion-icon></ion-button>
-      </ion-item>
+          <ion-button fill="clear" (click)="deleteTask(tarefa.id)"><ion-icon name="close-circle-outline"></ion-icon></ion-button>
+        </ion-item>
       <ion-list>
-        <ion-button expanded="full" (click)="mostrarOcultar()">Mostrar/Ocultar</ion-button>
+        <ion-button expanded="full" (click)="mostrarOcultar()"><ion-icon [name]="exibirConcluidos ? 'eye-off':'eye'"></ion-icon> Mostrar/Ocultar</ion-button>
       </ion-list>
     </ion-list>
 </ion-content>
